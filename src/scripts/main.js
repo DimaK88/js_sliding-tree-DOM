@@ -6,16 +6,17 @@ items.forEach((ul) => {
   const li = ul.parentElement;
   const span = document.createElement('span');
 
-  span.textContent = li.firstChild.textContent.trim();
-  li.firstChild.textContent = '';
+  span.textContent = li.childNodes[0].textContent.trim();
+  li.childNodes[0].textContent = '';
   li.prepend(span);
 
   span.addEventListener('click', () => {
     const nestedUl = li.querySelector('ul');
 
     if (nestedUl) {
-      nestedUl.style.display =
-        nestedUl.style.display === 'none' ? 'block' : 'none';
+      const currentDisplay = nestedUl.style.display;
+
+      nestedUl.style.display = currentDisplay === 'none' ? 'block' : 'none';
     }
   });
 });
